@@ -250,6 +250,7 @@
             </div>
         </div>
     </section>
+<!-- Chatbot section start -->
     <section>
         <div>
             <meta charset="UTF-8">
@@ -273,23 +274,33 @@
                 const results = document.getElementById("results");
     
                 function callGPTAPI(){
-                    const options = {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json",
-                            "X-RapidAPI-Key": "a151776f6bmsh94ea1567cbe783dp1d803bjsn21d00779e249",
-                            "X-RapidAPI-Host": "open-ai21.p.rapidapi.com"
-                        },
-                        body: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"${prompt.value}"}]}'
-                        };
-                    fetch("https://open-ai21.p.rapidapi.com/chat/completions", options)
-                    .then(response => response.json())
-                    .then(response => {
-                        results.innerText = response.choices[0].messages.content;
-                    })
-                    .catch(err => {
-                        console.error(err);
-                    });
+                    const axios = require('axios');
+
+const options = {
+  method: 'POST',
+  url: 'https://open-ai21.p.rapidapi.com/conversationllama',
+  headers: {
+    'content-type': 'application/json',
+    'X-RapidAPI-Key': 'a151776f6bmsh94ea1567cbe783dp1d803bjsn21d00779e249',
+    'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
+  },
+  data: {
+    messages: [
+      {
+        role: 'user',
+        content: 'hello'
+      }
+    ],
+    web_access: false
+  }
+};
+
+try {
+	const response = await axios.request(options);
+	console.log(response.data);
+} catch (error) {
+	console.error(error);
+}
                 }
             </script>
     </section>
