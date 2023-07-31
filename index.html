@@ -250,7 +250,49 @@
             </div>
         </div>
     </section>
-
+    <section>
+        <div>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Ask To ChatGPT</title>
+            <link rel="stylesheet" href="styles.css">
+        </div>
+            <div class="chatbot-container">
+              <div class="chatbox">
+                <div class="chat-messages">
+                  <!-- Chat messages will be displayed here -->
+                </div>
+                <div class="user-input">
+                    <input type="text" id="prompt">
+                    <button onclick="callGPTAPI()">Ask To ChatGPT</button>
+                </div>
+              </div>
+            </div>
+            <script>
+                const prompt = document.getElementById("prompt");
+                const results = document.getElementById("results");
+    
+                function callGPTAPI(){
+                    const options = {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                            "X-RapidAPI-Key": "a151776f6bmsh94ea1567cbe783dp1d803bjsn21d00779e249",
+                            "X-RapidAPI-Host": "open-ai21.p.rapidapi.com"
+                        },
+                        body: '{"model":"gpt-3.5-turbo","messages":[{"role":"user","content":"${prompt.value}"}]}'
+                        };
+                    fetch("https://open-ai21.p.rapidapi.com/chat/completions", options)
+                    .then(response => response.json())
+                    .then(response => {
+                        results.innerText = response.choices[0].messages.content;
+                    })
+                    .catch(err => {
+                        console.error(err);
+                    });
+                }
+            </script>
+    </section>
     <!-- footer section start -->
     <footer>
         <span>Created By <a href="#">Govind</a> | <span class="far fa-copyright"></span> 2023 All rights reserved.</span>
