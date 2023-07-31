@@ -251,59 +251,32 @@
         </div>
     </section>
 <!-- Chatbot section start -->
-    <section>
+     <section>
         <div>
             <meta charset="UTF-8">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <title>Ask To ChatGPT</title>
             <link rel="stylesheet" href="styles.css">
         </div>
-            <div class="chatbot-container">
-              <div class="chatbox">
+        <div class="chatbot-container">
+            <div class="chatbox">
                 <div class="chat-messages">
-                  <!-- Chat messages will be displayed here -->
+                    <!-- Chat messages will be displayed here -->
                 </div>
                 <div class="user-input">
                     <input type="text" id="prompt">
                     <button onclick="callGPTAPI()">Ask To ChatGPT</button>
                 </div>
-              </div>
             </div>
-            <script>
-                const prompt = document.getElementById("prompt");
-                const results = document.getElementById("results");
-    
-                function callGPTAPI(){
-                    const axios = require('axios');
-
-const options = {
-  method: 'POST',
-  url: 'https://open-ai21.p.rapidapi.com/conversationllama',
-  headers: {
-    'content-type': 'application/json',
-    'X-RapidAPI-Key': 'a151776f6bmsh94ea1567cbe783dp1d803bjsn21d00779e249',
-    'X-RapidAPI-Host': 'open-ai21.p.rapidapi.com'
-  },
-  data: {
-    messages: [
-      {
-        role: 'user',
-        content: 'hello'
-      }
-    ],
-    web_access: false
-  }
-};
-
-try {
-	const response = await axios.request(options);
-	console.log(response.data);
-} catch (error) {
-	console.error(error);
-}
-                }
-            </script>
+        </div>
+        <div>
+            <p id="results"></p>
+        </div>
+	<script src="your-script.js"></script>
     </section>
+    <script src="your-script.js"></script>
+     
+
     <!-- footer section start -->
     <footer>
         <span>Created By <a href="#">Govind</a> | <span class="far fa-copyright"></span> 2023 All rights reserved.</span>
